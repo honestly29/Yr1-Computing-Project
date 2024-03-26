@@ -14,6 +14,7 @@ function Toolbox() {
 		}
 
 		var toolName = this.id().split("sideBarItem")[0];
+		//console.log(toolName);
 		self.selectTool(toolName);
 
 		//call loadPixels to make sure most recent changes are saved to pixel array
@@ -63,6 +64,10 @@ function Toolbox() {
 				//if the tool has an options area. Populate it now.
 				if (this.selectedTool.hasOwnProperty("populateOptions")) {
 					this.selectedTool.populateOptions();
+				}
+
+				if (this.selectedTool.hasOwnProperty("initialiseStrokeSlider")) {
+					this.selectedTool.initialiseStrokeSlider();
 				}
 			}
 		}

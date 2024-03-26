@@ -10,6 +10,16 @@ function FreehandTool(){
 	var previousMouseX = -1;
 	var previousMouseY = -1;
 
+	this.initialiseStrokeSlider = function() {
+		this.strokeSize = new strokeSize();
+	}
+	
+	this.unselectTool = function() {
+		updatePixels();
+		//clear options
+		select(".options").html("");
+	};
+	
 	this.draw = function(){
 		//if the mouse is pressed
 		if(mouseIsPressed){
@@ -22,6 +32,8 @@ function FreehandTool(){
 			//if we already have values for previousX and Y we can draw a line from 
 			//there to the current mouse location
 			else{
+                strokeWeight(this.strokeSize.slider.value());
+
 				line(previousMouseX, previousMouseY, mouseX, mouseY);
 				previousMouseX = mouseX;
 				previousMouseY = mouseY;

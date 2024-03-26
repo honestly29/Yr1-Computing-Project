@@ -3,8 +3,7 @@
 var toolbox = null;
 var colourP = null;
 var helpers = null;
-
-
+let strokeSlider;
 
 function setup() {
 
@@ -20,13 +19,20 @@ function setup() {
 	//create a toolbox for storing the tools
 	toolbox = new Toolbox();
 
+	//strokeSlider = new strokeSize();
+	
+
 	//add the tools to the toolbox.
 	toolbox.addTool(new FreehandTool());
 	toolbox.addTool(new LineToTool());
 	toolbox.addTool(new sprayCanTool());
 	toolbox.addTool(new mirrorDrawTool());
+	toolbox.addTool(new shapeTool());
+	toolbox.addTool(new eraserTool());
+
 	background(255);
 
+	
 }
 
 function draw() {
@@ -39,4 +45,5 @@ function draw() {
 	} else {
 		alert("it doesn't look like your tool has a draw method!");
 	}
+
 }

@@ -20,4 +20,9 @@ function HelperFunctions() {
 		// save current canvas as an image
 		saveCanvas();
 	});
+
+	//event handler for load image event. loads a previous canvas to the
+	//current canvas
+	
 }
+

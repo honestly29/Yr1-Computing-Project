@@ -75,3 +75,17 @@ html, body {
 .header {
   background-color: #999;
 }
+
+
+#bottombar {
+    display: flex;
+    flex-direction: row; /* This is the default, but it's good to be explicit */
+    align-items: center; /* Align items vertically in the center, if desired */
+    justify-content: start; /* Align items to the start of the container, can be adjusted */
+}
+
+.shapeItem {
+    display: inline-block;
+	/* margin: 200px; */
+}
+

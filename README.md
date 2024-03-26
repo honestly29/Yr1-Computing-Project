@@ -1,6 +1,6 @@
 # Yr1-Computing-Project
-Drawing app with ML image recognition 
 
+Drawing app with ML image recognition
 
 Logs:
 
@@ -15,3 +15,12 @@ Logs:
 17/03/24 - Downloaded tf.js.
 
 18/03/24 - Started shapesTool for drawing different shapes.
+
+22/03/24 - Finished basic rectangle, circle and triangle shape features.
+
+23/03/24 - Started eraser tool
+
+25/03/24 - Finished eraser tool
+
+26/03/24 - Should I put fontSize inside a constructor function or make a new one?
+At the moment, fontSize is a seperate slider for each tool, I should make it a global variable.

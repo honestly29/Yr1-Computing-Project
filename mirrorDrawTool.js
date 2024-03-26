@@ -21,9 +21,14 @@ function mirrorDrawTool() {
 	var previousOppositeMouseX = -1;
 	var previousOppositeMouseY = -1;
 
+	this.initialiseStrokeSlider = function() {
+		this.strokeSize = new strokeSize();
+	}
+
 	this.draw = function() {
 		//display the last save state of pixels
 		updatePixels();
+		strokeWeight(this.strokeSize.slider.value());
 
 		//do the drawing if the mouse is pressed
 		if (mouseIsPressed) {
@@ -39,6 +44,7 @@ function mirrorDrawTool() {
 			//if there are values in the previous locations
 			//draw a line between them and the current positions
 			else {
+				
 				line(previousMouseX, previousMouseY, mouseX, mouseY);
 				previousMouseX = mouseX;
 				previousMouseY = mouseY;
