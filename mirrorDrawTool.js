@@ -21,14 +21,14 @@ function mirrorDrawTool() {
 	var previousOppositeMouseX = -1;
 	var previousOppositeMouseY = -1;
 
-	this.initialiseStrokeSlider = function() {
+	/*this.initialiseStrokeSlider = function() {
 		this.strokeSize = new strokeSize();
-	}
+	}*/
 
 	this.draw = function() {
 		//display the last save state of pixels
 		updatePixels();
-		strokeWeight(this.strokeSize.slider.value());
+		//strokeWeight(this.strokeSize.slider.value());
 
 		//do the drawing if the mouse is pressed
 		if (mouseIsPressed) {

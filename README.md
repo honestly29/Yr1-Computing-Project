@@ -1,6 +1,6 @@
 # Yr1-Computing-Project
 
-Drawing app with ML image recognition
+Drawing app
 
 Logs:
 
@@ -24,3 +24,11 @@ Logs:
 
 26/03/24 - Should I put fontSize inside a constructor function or make a new one?
 At the moment, fontSize is a seperate slider for each tool, I should make it a global variable.
+
+28/03/24 - Made a global font size slider
+
+22/04/24 - Made the bottom bar 'sticky' to stop it being covered by the canavas when adjusting the screen size
+
+30/04/24 - Started Load Image feature
+
+02/05/24 - Load Image works however, it is not dynamic. Created blurTool. Want to add border

@@ -21,6 +21,11 @@
 
     <script src="strokeSize.js"></script>
 
+    <script src="blurTool.js"></script>
+
+  
+
+
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
@@ -29,8 +34,12 @@
 
         <button id="clearButton">Clear</button>
         <button id="saveImageButton">Save Image</button>
-        <!--<button id="loadImageButton">Load Image</button>-->
+        <button id="loadImageButton">Load Image</button>
+        <input type="file" id="fileInput" accept="image/*" style="display: none;" />
+        
+        <label for="font">Font:</label> <input type="range" min="1" max="100" value="1" class="slider" id="fontSlider">
       </div>
+
       <div class="box" id="sidebar"></div>
       <div id="content"></div>
       <div class="box colourPalette"></div>

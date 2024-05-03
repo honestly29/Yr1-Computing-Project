@@ -1,3 +1,4 @@
+
 function HelperFunctions() {
 
 	//p5.dom click click events. Notice that there is no this. at the
@@ -21,8 +22,30 @@ function HelperFunctions() {
 		saveCanvas();
 	});
 
-	//event handler for load image event. loads a previous canvas to the
-	//current canvas
-	
+
+	// Event handler for loading an image
+	select("#loadImageButton").mouseClicked(function() {
+        document.getElementById("fileInput").click(); // Trigger the file input's click event
+    });
+
+    document.getElementById("fileInput").addEventListener("change", handleFileSelect);
 }
 
+function handleFileSelect(event) {
+	const file = event.target.files[0]; // Get the selected file
+
+	if (!file) return; // Return if no file is selected
+
+	const reader = new FileReader();
+
+	reader.onload = function(e) {
+		const dataUrl = e.target.result; // Get the Data URL
+
+		// Load the image from the Data URL and display it on the canvas
+		loadImage(dataUrl, function(loadedImg) {
+			image(loadedImg, 0, 0, width, height); // Draw the image, stretched to the canvas size
+		});
+	};
+
+	reader.readAsDataURL(file); // Read the file as a Data URL
+}

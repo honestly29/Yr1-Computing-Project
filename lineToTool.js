@@ -8,7 +8,7 @@ function LineToTool(){
 	var startMouseX = -1;
 	var startMouseY = -1;
 
-	this.initialiseStrokeSlider = function() {
+	/*this.initialiseStrokeSlider = function() {
 		this.strokeSize = new strokeSize();
 	}
 	
@@ -16,7 +16,7 @@ function LineToTool(){
 		updatePixels();
 		//clear options
 		select(".options").html("");
-	};
+	};*/
 	
 	// boolean to show drawing state
 	var drawing = false;
@@ -35,7 +35,7 @@ function LineToTool(){
 			else{
 				// updates the canvas with the new RGBA values in the pixels array.
 				updatePixels();
-				strokeWeight(this.strokeSize.slider.value());
+				//strokeWeight(this.strokeSize.slider.value());
 				line(startMouseX, startMouseY, mouseX, mouseY);
 			}
 
