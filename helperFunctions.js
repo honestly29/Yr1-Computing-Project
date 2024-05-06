@@ -15,6 +15,11 @@ function HelperFunctions() {
 		loadPixels();
 	});
 
+	//event handler for the undo button event. Undoes the last action
+	select("#undoButton").mouseClicked(function() {
+	});
+	
+
 	//event handler for the save image button. saves the canvsa to the
 	//local file system.
 	select("#saveImageButton").mouseClicked(function() {
@@ -30,6 +35,7 @@ function HelperFunctions() {
 
     document.getElementById("fileInput").addEventListener("change", handleFileSelect);
 }
+
 
 function handleFileSelect(event) {
 	const file = event.target.files[0]; // Get the selected file

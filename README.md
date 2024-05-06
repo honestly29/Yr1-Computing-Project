@@ -31,4 +31,9 @@ At the moment, fontSize is a seperate slider for each tool, I should make it a g
 
 30/04/24 - Started Load Image feature
 
-02/05/24 - Load Image works however, it is not dynamic. Created blurTool. Want to add border
+02/05/24 - Load Image works however, it is not dynamic. Created blur tool. Want to add border. Struggled to add border.
+
+03/05/24 - Added right angled triangle to shapes tool
+
+06/05/24 - Started fill tool (DPS). Use colourP to get colours dynamically.
+Added option fill and noFill option to shapes tool (bug were shape gets drawn from menu). Trying to implement Undo button (saveCanvas saves the line drawn in mirror tool)

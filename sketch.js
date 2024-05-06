@@ -5,8 +5,6 @@ var colourP = null;
 var helpers = null;
 let strokeSlider;
 
-let outlineBuffer; // Buffer for storing the outline of the image
-
 function setup() {
     // Create a canvas that fills the content div
     canvasContainer = select('#content');
@@ -26,9 +24,11 @@ function setup() {
     toolbox.addTool(new LineToTool());
     toolbox.addTool(new sprayCanTool());
     toolbox.addTool(new mirrorDrawTool());
-    toolbox.addTool(new shapeTool());
+    toolbox.addTool(new shapeTool(colourP));
     toolbox.addTool(new eraserTool());
     toolbox.addTool(new blurTool());
+    toolbox.addTool(new floodFillTool(colourP));
+    toolbox.addTool(new spirographTool());
 
     background(255); // Clear canvas to white
 }
@@ -40,7 +40,6 @@ function draw() {
     } else {
         alert("It doesn't look like your tool has a draw method!");
     }
-
 
     let slider = document.getElementById("fontSlider");
     strokeWeight(slider.value);

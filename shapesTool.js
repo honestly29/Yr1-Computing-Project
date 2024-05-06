@@ -1,57 +1,64 @@
-function shapeTool() {
+function shapeTool(colourP) {
     this.name = "shapeTool";
     this.icon = "assets/shapesTool.jpg";
 
-	this.shapeTitle = ["rectangle", "circle", "triangle"];
-	this.shapeIcon = ["assets/square.jpg", "assets/circle.jpg", "assets/triangle.jpg"];
+	this.shapeTitle = ["rectangle", "circle", "triangle", "rightAngledTriangle"];
+	this.shapeIcon = ["assets/square.jpg", "assets/circle.jpg", "assets/triangle.jpg", "assets/rightAngledTriangle.jpg"];
 
 	this.selectedShape = null;
+	this.fillMode = true;
 
-	let self = this;
-
-	// draw shape icons
-	this.populateOptions = function() {	
-		for (let i = 0; i < this.shapeTitle.length; i++){
-			// Sizing and margin of images
-			let imageSize = "width: 100px; height: 100px;"; 
-			let margin = "margin: 5px;"; 
-			
-			let shapeItem = createDiv("<img src='" + this.shapeIcon[i] + "' " + "style='" + imageSize + margin + "'" + "></div>");
-			shapeItem.class("shapeItem " + this.shapeTitle[i]);
-			shapeItem.parent("bottombar");
-		
-			//Research IIFE
-			shapeItem.mouseClicked((function(shapeIndex) {
-				return function () {
-					for (let j = 0; j < self.shapeTitle.length; j++){
-						let currentShape = select('.' + self.shapeTitle[j])
-
-						if (j === shapeIndex) {
-							self.selectedShape = self.shapeTitle[shapeIndex];
-							currentShape.style("border", "2px solid blue");
-						} else {
-							currentShape.style("border", "none");
-						}
-					}
-				};
-			})(i))
-		}
-	};
-
-
-	this.unselectTool = function() {
-		updatePixels();
-		//clear options
-		select(".options").html("");
-	};
-
-	
-   // variables to store position of the mouse
+	// variables to store position of the mouse
 	let startMouseX = -1;
 	let startMouseY = -1;
 
 	// boolean to show drawing state
 	let drawing = false;
+
+	let self = this;
+
+	// default colour
+	fill(colourP.selectedColour);
+
+	// draw shape icons
+	this.populateOptions = function() {
+
+		// Create fill mode dropdown
+        let fillModeDropdown = createSelect();
+        fillModeDropdown.option("Fill");
+        fillModeDropdown.option("No Fill");
+        fillModeDropdown.changed(() => {
+            self.fillMode = fillModeDropdown.value() === "Fill";
+        });
+        fillModeDropdown.parent("bottombar");
+
+		
+		for (let i = 0; i < this.shapeTitle.length; i++) {
+			// Sizing and margin of images
+			let imageSize = "width: 100px; height: 100px;";
+			let margin = "margin: 5px;";
+	
+			// Creating the div for each shape option
+			let shapeItem = createDiv(`<img src='${this.shapeIcon[i]}' style='${imageSize}${margin}'>`);
+			shapeItem.class(`shapeItem ${this.shapeTitle[i]}`);
+			shapeItem.parent("bottombar");
+	
+			// Directly referencing the index for the click event
+			shapeItem.mouseClicked(() => {
+				for (let j = 0; j < self.shapeTitle.length; j++) {
+					let currentShape = select(`.${self.shapeTitle[j]}`);
+	
+					if (j === i) {
+						self.selectedShape = self.shapeTitle[i];
+						currentShape.style("border", "2px solid blue");
+					} else {
+						currentShape.style("border", "none");
+					}
+				}
+			});
+		}
+	};
+	
 
 	this.draw = function() {
 
@@ -68,6 +75,13 @@ function shapeTool() {
 			else{
 				// updates the canvas with the new RGBA values in the pixels array.
 				updatePixels();
+
+				if (this.fillMode){
+					fill(colourP.selectedColour);
+				} else {
+					noFill();
+				}
+
 				if (this.selectedShape == "rectangle"){
 					rect(startMouseX, startMouseY, mouseX-startMouseX, mouseY-startMouseY);
 				}
@@ -78,6 +92,10 @@ function shapeTool() {
 				
 				if (this.selectedShape == "triangle"){
 					triangle(startMouseX, startMouseY, (startMouseX+mouseX)/2, mouseY, mouseX, startMouseY);
+				}
+
+				if (this.selectedShape == "rightAngledTriangle"){
+					triangle(startMouseX, startMouseY, mouseX, startMouseY, startMouseX, mouseY);
 				}
 				
 			}
@@ -91,6 +109,14 @@ function shapeTool() {
 			startMouseY = -1;
 		}
 	};
+
+
+	this.unselectTool = function() {
+		updatePixels();
+		//clear options
+		select(".options").html("");
+	};
+
 }
 
 
