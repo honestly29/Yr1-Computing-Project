@@ -1,6 +1,6 @@
 function shapeTool(colourP) {
     this.name = "shapeTool";
-    this.icon = "assets/shapesTool.jpg";
+    this.icon = "assets/shapes-shapes.jpg";
 
 	this.shapeTitle = ["rectangle", "circle", "triangle", "rightAngledTriangle"];
 	this.shapeIcon = ["assets/square.jpg", "assets/circle.jpg", "assets/triangle.jpg", "assets/rightAngledTriangle.jpg"];
@@ -29,14 +29,17 @@ function shapeTool(colourP) {
         fillModeDropdown.option("No Fill");
         fillModeDropdown.changed(() => {
             self.fillMode = fillModeDropdown.value() === "Fill";
+			drawing = false;
+			startMouseX = -1;
+			startMouseY = -1;
         });
         fillModeDropdown.parent("bottombar");
 
 		
 		for (let i = 0; i < this.shapeTitle.length; i++) {
-			// Sizing and margin of images
+			// sizing and margin of images
 			let imageSize = "width: 100px; height: 100px;";
-			let margin = "margin: 5px;";
+			let margin = "margin: 10px;";
 	
 			// Creating the div for each shape option
 			let shapeItem = createDiv(`<img src='${this.shapeIcon[i]}' style='${imageSize}${margin}'>`);
@@ -63,8 +66,12 @@ function shapeTool(colourP) {
 	this.draw = function() {
 
 		if(mouseIsPressed){
-            //console.log(startMouseX, startMouseY);
 			if(startMouseX == -1){
+
+				if (!inCanvasChecker()){
+					return
+				}
+				
 				startMouseX = mouseX;
 				startMouseY = mouseY;
 				drawing = true;
@@ -97,12 +104,11 @@ function shapeTool(colourP) {
 				if (this.selectedShape == "rightAngledTriangle"){
 					triangle(startMouseX, startMouseY, mouseX, startMouseY, startMouseX, mouseY);
 				}
-				
 			}
 
 		}
 
-		// when mouse is let go, stops drawing the line and sets x and y back to -1
+		// when mouse is let go, stops drawing the shape and sets x and y back to -1
 		else if(drawing) {
 			drawing = false;
 			startMouseX = -1;
@@ -112,9 +118,10 @@ function shapeTool(colourP) {
 
 
 	this.unselectTool = function() {
-		updatePixels();
+		this.selectedShape = null;
 		//clear options
 		select(".options").html("");
+		
 	};
 
 }

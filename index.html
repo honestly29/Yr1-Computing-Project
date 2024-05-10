@@ -9,35 +9,26 @@
     <script src="toolbox.js"></script>
     <script src="colourPalette.js"></script>
     <script src="helperFunctions.js"></script>
-
     <script src="freehandTool.js"></script>
     <script src="lineToTool.js"></script>
     <script src="mirrorDrawTool.js"></script>
-
     <script src="sprayCanTool.js"></script>
-
     <script src="shapesTool.js"></script>
     <script src="eraserTool.js"></script>
-
     <script src="strokeSize.js"></script>
-
     <script src="blurTool.js"></script>
-
     <script src="floodFillTool.js"></script>
-
-    <script src="spirograph.js"></script>
-
-  
-
+    <script src="spirographTool.js"></script>
+    <script src="inCanvasChecker.js"></script>
 
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
+
   <body>
   	<div class="wrapper">
       <div class="box header" id="topbar">My Drawing App
 
         <button id="clearButton">Clear</button>
-        <button id="undoButton">Undo</button>
         <button id="saveImageButton">Save Image</button>
         <button id="loadImageButton">Load Image</button>
         <input type="file" id="fileInput" accept="image/*" style="display: none;" />
@@ -47,6 +38,7 @@
 
       <div class="box" id="sidebar"></div>
       <div id="content"></div>
+
       <div class="box colourPalette"></div>
       <div class="box options" id="bottombar"></div> 
 	</div>

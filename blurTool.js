@@ -2,46 +2,54 @@ function blurTool() {
   this.name = "blurTool";
   this.icon = "assets/blur.jpg";
 
-  let blurRadius = 50; // Radius for the blur effect
-  let dragging = false;
+  let blurRadius = 50; // radius for the blur effect
+  let bluring = false; // flag to show drawing state
 
 	this.draw = function() {
-    if (mouseIsPressed) {
-    dragging = true;
-    } else {
-    dragging = false;
-    }
 
-  if (dragging) {
-    this.applyBlur(floor(mouseX), floor(mouseY), blurRadius);
+    // if mouse is pressed set bluring to true
+    if (mouseIsPressed) {
+      bluring = true;
+    } else {
+      bluring = false;
     }
+    
+    // if bluring is true apply blur effect
+    if (bluring) {
+      this.applyBlur(floor(mouseX), floor(mouseY), blurRadius);
+      }
   };
    
       
   this.applyBlur = function(x, y, radius) {
-    loadPixels(); // Load current pixel data
+
+    loadPixels(); 
     
-    // Blur pixels within the radius around (x, y)
+    // loops through pixels within a square around the point (x, y)
     for (let i = x - radius; i <= x + radius; i++) {
       for (let j = y - radius; j <= y + radius; j++) {
+        // check if the pixel is within the canvas
         if (i >= 0 && j >= 0 && i < width && j < height) {
-          // Get the average color of surrounding pixels
-          let count = 0;
-          let sumR = 0, sumG = 0, sumB = 0;
-  
+          
+          let count = 0; // count the number of pixels 
+          let sumR = 0, sumG = 0, sumB = 0; // sum of the colour components
+          
+          // loops through pixels within a square around the point (i, j)
           for (let dx = -1; dx <= 1; dx++) {
             for (let dy = -1; dy <= 1; dy++) {
+              // calculates the index of the pixel in the pixels array
               let idx = ((j + dy) * width + (i + dx)) * 4;
+              // checks if the pixel is within the canvas
               if (idx >= 0 && idx < pixels.length) {
-                sumR += pixels[idx];
-                sumG += pixels[idx + 1];
-                sumB += pixels[idx + 2];
+                sumR += pixels[idx]; // sum red 
+                sumG += pixels[idx + 1]; // sum green 
+                sumB += pixels[idx + 2]; // sum blue 
                 count++;
               }
             }
           }
   
-          // Set the pixel to the average color
+          // calculates the average colour and set the pixel to this new colour
           let idx = (j * width + i) * 4;
           pixels[idx] = sumR / count;
           pixels[idx + 1] = sumG / count;
@@ -50,13 +58,12 @@ function blurTool() {
       }
     }
 
-    updatePixels(); // Apply the modified pixels
+    updatePixels(); 
     }
 
 	this.unselectTool = function() {
 		updatePixels();
 		strokeWeight(1);
-		//select(".options").html("");
 	};
 }
 

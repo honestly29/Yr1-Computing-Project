@@ -36,14 +36,13 @@ html, body {
 	position: sticky; /* added to stop canvas from convering bottom bar */
 	grid-area: colourP;
 	display:flex;
-	flex-direction:grid;
+	flex-direction: grid;
 	flex-flow: wrap;
-	overflow-y: auto;
 }
 
 .options{
 	grid-area: options;
-	padding: 15px;
+	padding: 15px; /* padding between pallette and options */
 }
 
 .colourSwatches{
@@ -59,16 +58,17 @@ html, body {
 	.wrapper {
 		display: grid;
 		height: 100%;
-		grid-template-columns: 70px 630px  900px; /* middle value change width of colour palatte */
+		grid-template-columns: 70px 430px  minmax(500px, 1fr);
 		grid-template-rows: 35px minmax(500px, 1fr) 160px;
 		grid-template-areas:
-               "header header header header"
-				"sidebar content content content"
-                "colourP colourP options options";
+               "header header header"
+				"sidebar content content"
+                "colourP colourP options";
 
 		background-color: #fff;
 		color: #444;
 	}
+
 .box {
   background-color: #444;
   color: #fff;
@@ -81,15 +81,36 @@ html, body {
 
 
 #bottombar {
-	position: sticky; /* added to stop canvas from convering bottom bar */
+	position: sticky; 
     display: flex;
     flex-direction: row; 
     align-items: center; 
     justify-content: start; 
+} 
+
+
+#sliderContainer {
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 30px;
+    margin: 20px; 
+	margin-top: 0px; 
 }
 
-.shapeItem {
-    display: inline-block;
-	/* margin: 200px; */
+
+.sliderGroup {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+}
+
+.sliderGroup p {  
+    margin-bottom: 5px; 
+    margin-top: 20px;   
+}
+
+.sliderGroup .spirographSlider { 
+    margin-top: 0px; 
 }
 

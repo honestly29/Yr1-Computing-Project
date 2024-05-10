@@ -47,4 +47,12 @@ function draw() {
     slider.oninput = function() {
         strokeWeight(this.value);
     }
+
+    
+}
+
+function mouseReleased() {
+    if (toolbox.selectedTool.hasOwnProperty("first")) {
+        toolbox.selectedTool.first = true;
+    }
 }

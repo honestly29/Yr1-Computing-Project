@@ -13,10 +13,9 @@ function HelperFunctions() {
 		//call loadPixels to update the drawing state
 		//this is needed for the mirror tool
 		loadPixels();
-	});
 
-	//event handler for the undo button event. Undoes the last action
-	select("#undoButton").mouseClicked(function() {
+		// clears the current file input value
+    	document.getElementById("fileInput").value = ''; 
 	});
 	
 
@@ -28,30 +27,31 @@ function HelperFunctions() {
 	});
 
 
-	// Event handler for loading an image
+	// event handler for loading an image
 	select("#loadImageButton").mouseClicked(function() {
-        document.getElementById("fileInput").click(); // Trigger the file input's click event
+        document.getElementById("fileInput").click(); 
     });
 
-    document.getElementById("fileInput").addEventListener("change", handleFileSelect);
+	// event listener for the file input
+    document.getElementById("fileInput").addEventListener("change", fileSlected);
 }
 
 
-function handleFileSelect(event) {
-	const file = event.target.files[0]; // Get the selected file
+function fileSlected(event) {
+	const file = event.target.files[0]; // gets the selected file
 
-	if (!file) return; // Return if no file is selected
+	if (!file) return; // returns if no file is selected
 
 	const reader = new FileReader();
 
 	reader.onload = function(e) {
-		const dataUrl = e.target.result; // Get the Data URL
+		const dataUrl = e.target.result; // gets the Data URL
 
-		// Load the image from the Data URL and display it on the canvas
+		// loads the image from the data URL and display it on the canvas
 		loadImage(dataUrl, function(loadedImg) {
-			image(loadedImg, 0, 0, width, height); // Draw the image, stretched to the canvas size
+			image(loadedImg, 0, 0, canvas.width, canvas.height); // draws the image
 		});
 	};
 
-	reader.readAsDataURL(file); // Read the file as a Data URL
+	reader.readAsDataURL(file); // reads the file as a data URL
 }

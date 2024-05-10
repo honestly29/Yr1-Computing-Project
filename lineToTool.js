@@ -8,23 +8,17 @@ function LineToTool(){
 	var startMouseX = -1;
 	var startMouseY = -1;
 
-	/*this.initialiseStrokeSlider = function() {
-		this.strokeSize = new strokeSize();
-	}
-	
-	this.unselectTool = function() {
-		updatePixels();
-		//clear options
-		select(".options").html("");
-	};*/
-	
-	// boolean to show drawing state
 	var drawing = false;
 
 	this.draw = function(){
 
 		if(mouseIsPressed){
 			if(startMouseX == -1){
+
+				if (!inCanvasChecker()){
+					return
+				}
+				
 				startMouseX = mouseX;
 				startMouseY = mouseY;
 				drawing = true;
